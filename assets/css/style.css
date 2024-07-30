@@ -5,13 +5,14 @@
     margin: 0;
     padding: 0;
     border: 0;
-  }
+}
 
-  body {
+body {
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
 }
+
 /* Navigation rules */
 .navbar {
     display: flex;
@@ -37,7 +38,7 @@
 
 .navbar-nav {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     width: 100%;
     align-items: center;
     padding: 0;
@@ -58,7 +59,8 @@
     text-decoration: none;
 }
 
-.navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:hover {
     color: #ffee00;
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -70,17 +72,71 @@
     margin-bottom: 1rem;
 }
 
+/* Modal Styling */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    color: #f4f4f4;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+.modal-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content p,
+.modal-content ul {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.close {
+    color: #f4f4f4;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ffee00;
+}
+
+/* Hide element */
+.hidden {
+    display: none;
+}
+
 /* Media Query for larger devices */
 @media (min-width: 768px) {
     .navbar {
-        flex-direction: row; 
-        justify-content: space-between; 
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
     }
 
     .navbar-nav {
-        flex-direction: row; 
-        width: auto; 
+        flex-direction: row;
+        width: auto;
         margin: 0;
     }
 
@@ -90,5 +146,9 @@
 
     .navbar-toggler {
         display: none;
+    }
+
+    .modal-content {
+        width: 50%;
     }
 }
