@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         instructionsModal.classList.add('hidden');
     });
 
-    // Close the modal when clicking outside the modal content
     window.addEventListener('click', function(event) {
         if (event.target === instructionsModal) {
             instructionsModal.classList.add('hidden');
