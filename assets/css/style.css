@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #f9f9f9;
+    background-color: #E8D4A3;
     margin: 0;
     padding: 0;
 }
@@ -21,10 +21,10 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem;
     font-weight: 700;
-    background-color: #1a1a1a;
-    color: #f4f4f4;
+    background-color: #2F191B;
+    color: #E8D4A3;
     padding: 0.5rem 1rem;
-    border-bottom: 3px solid #ffee00;
+    border-bottom: 3px solid #E2A946;
     z-index: 2;
     position: relative;
 }
@@ -32,7 +32,7 @@ body {
 .navbar-brand {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
-    color: #ffee00;
+    color: #E2A946;
     letter-spacing: 0.2rem;
     text-decoration: none;
     margin-bottom: 1rem;
@@ -53,7 +53,7 @@ body {
 }
 
 .navbar-nav .nav-link {
-    color: #f4f4f4;
+    color: #E8D4A3;
     letter-spacing: 0.1rem;
     padding: 0.5rem 1rem;
     display: block;
@@ -63,14 +63,14 @@ body {
 
 .navbar-nav .nav-link:focus,
 .navbar-nav .nav-link:hover {
-    color: #ffee00;
+    color: #E2A946;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
 .navbar-toggler {
     border: none;
     background: none;
-    color: #ffee00;
+    color: #E2A946;
     margin-bottom: 1rem;
 }
 
@@ -89,11 +89,11 @@ body {
 }
 
 .modal-content {
-    background-color: #1a1a1a;
-    color: #f4f4f4;
+    background-color: #2F191B;
+    color: #E8D4A3;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #E2A946;
     width: 90%;
     max-width: 600px;
     border-radius: 8px;
@@ -112,7 +112,7 @@ body {
 }
 
 .close {
-    color: #f4f4f4;
+    color: #E8D4A3;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -120,7 +120,7 @@ body {
 }
 
 .close:hover {
-    color: #ffee00;
+    color: #E2A946;
 }
 
 /* Play Container Styling */
@@ -138,7 +138,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #E8D4A3;
     margin-top: 60px;
 }
 
@@ -147,9 +147,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #1a1a1a;
-    color: #f4f4f4;
-    border: 2px solid #ffee00;
+    background-color: #2F191B;
+    color: #E8D4A3;
+    border: 2px solid #E2A946;
     border-radius: 12px;
     padding: 20px;
     width: 70%;
@@ -159,7 +159,7 @@ body {
 }
 
 .play-container i {
-    color: #ffee00;
+    color: #E2A946;
     font-size: 4rem;
     margin-bottom: 10px;
 }
@@ -167,7 +167,7 @@ body {
 .play-container p {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
-    color: #f4f4f4;
+    color: #E8D4A3;
 }
 
 /* Hide element */
