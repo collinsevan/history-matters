@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const instructionsButton = document.querySelector('[data-toggle="modal"]');
     const instructionsModal = document.getElementById('instructionsModal');
     const closeModalButton = document.querySelector('.close');
-    
+    const playButton = document.getElementById('playButton');
+    const playIcon = document.getElementById('playIcon');
+    const playContainer = document.querySelector('.play-container');
+
     // Open the modal when the instructions button is clicked
     instructionsButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -14,9 +17,58 @@ document.addEventListener('DOMContentLoaded', function() {
         instructionsModal.classList.add('hidden');
     });
 
+    // Close the modal when clicking outside
     window.addEventListener('click', function(event) {
         if (event.target === instructionsModal) {
             instructionsModal.classList.add('hidden');
         }
+    });
+
+    // Function to load questions from the JSON file
+    async function loadQuestions() {
+        try {
+            const response = await fetch('assets/data/questions.json');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Failed to load questions:', error);
+            return [];
+        }
+    }
+
+    // Function to display questions inside the play-container
+    function displayQuestions(questions) {
+        playContainer.innerHTML = ''; // Clear existing content
+        
+        questions.forEach((question, index) => {
+            const questionElement = document.createElement('div');
+            questionElement.className = 'question';
+            questionElement.innerHTML = `
+                <h3>Question ${index + 1}:</h3>
+                <p>${question.question}</p>
+                <ul>
+                    ${question.options.map(option => `<li>${option}</li>`).join('')}
+                </ul>
+            `;
+            playContainer.appendChild(questionElement);
+        });
+    }
+
+    // Function to start the quiz
+    async function startQuiz() {
+        const questions = await loadQuestions();
+        displayQuestions(questions);
+    }
+
+    playButton.addEventListener('click', function() {
+        startQuiz();
+    });
+
+    
+    playIcon.addEventListener('click', function() {
+        startQuiz();
     });
 });
