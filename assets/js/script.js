@@ -39,6 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Function to shuffle array (Fisher-Yates algorithm)
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
     // Function to display questions inside the play-container
     function displayQuestions(questions) {
         playContainer.innerHTML = ''; // Clear existing content
@@ -59,15 +68,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to start the quiz
     async function startQuiz() {
-        const questions = await loadQuestions();
-        displayQuestions(questions);
+        const allQuestions = await loadQuestions();
+        const shuffledQuestions = shuffleArray(allQuestions);
+        const selectedQuestions = shuffledQuestions.slice(0, 10);
+        displayQuestions(selectedQuestions);
     }
 
+    // Event listeners for play button and play icon
     playButton.addEventListener('click', function() {
         startQuiz();
     });
 
-    
     playIcon.addEventListener('click', function() {
         startQuiz();
     });
