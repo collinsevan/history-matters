@@ -47,10 +47,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>${question.question}</p>
                 <br> <!-- Line break after the question -->
                 <div class="options-container">
-                    ${question.options.map(option => `<div class="option">${option}</div><br>`).join('')}
+                    ${question.options.map((option, optionIndex) => `<div class="option" data-index="${optionIndex}">${option}</div><br>`).join('')}
                 </div>
             </div>
         `;
+
+        // Add click event listener to each option
+        const options = document.querySelectorAll('.option');
+        options.forEach(option => {
+            option.addEventListener('click', function () {
+                checkAnswer(option, question.correctIndex);
+            });
+        });
+    }
+
+    // Function to check if the selected answer is correct
+    function checkAnswer(selectedOption, correctIndex) {
+        const selectedIndex = parseInt(selectedOption.getAttribute('data-index'));
+
+        if (selectedIndex === correctIndex) {
+            selectedOption.style.backgroundColor = '#4CAF50'; // Green
+        } else {
+            selectedOption.style.backgroundColor = '#F44336'; // Red
+        }
+
+        // Disable all options after selection
+        const options = document.querySelectorAll('.option');
+        options.forEach(option => {
+            option.style.pointerEvents = 'none';
+        });
     }
 
     // Function to start the quiz
