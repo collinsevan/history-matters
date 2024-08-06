@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const playButton = document.getElementById('playButton');
     const playIcon = document.getElementById('playIcon');
     const playContainer = document.querySelector('.play-container');
-    let questions = window.questions || [];
+    let questions = [];
     let currentQuestionIndex = 0;
     let selectedQuestions = [];
 
@@ -45,19 +45,29 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="question">
                 <h3>Question ${index + 1}:</h3>
                 <p>${question.question}</p>
-                <ul>
-                    ${question.options.map(option => `<li>${option}</li>`).join('')}
-                </ul>
+                <br> <!-- Line break after the question -->
+                <div class="options-container">
+                    ${question.options.map(option => `<div class="option">${option}</div><br>`).join('')}
+                </div>
             </div>
         `;
+
+        // Event listener for the next question button
+        const nextButton = document.getElementById('nextQuestion');
+        if (nextButton) {
+            nextButton.addEventListener('click', function () {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < selectedQuestions.length) {
+                    displayQuestion(currentQuestionIndex);
+                } else {
+                    playContainer.innerHTML = '<p>Quiz completed! Click "Play" to restart.</p>';
+                }
+            });
+        }
     }
 
     // Function to start the quiz
     function startQuiz() {
-        if (questions.length === 0) {
-            console.error("Questions array is empty or not defined.");
-            return;
-        }
         selectedQuestions = shuffleArray([...questions]).slice(0, 10);
         currentQuestionIndex = 0;
         displayQuestion(currentQuestionIndex);
@@ -66,4 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listeners for play buttons
     playButton.addEventListener('click', startQuiz);
     playIcon.addEventListener('click', startQuiz);
+
+    questions = window.questions;
 });

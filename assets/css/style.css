@@ -138,73 +138,59 @@ body {
     padding: 20px;
     width: 70%;
     max-width: 600px;
-    min-height: 400px;
+    min-height: 350px;
     text-align: center;
     position: relative;
 }
 
-#playIconContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-#playIcon {
+.play-container i {
     color: #E2A946;
     font-size: 4rem;
+    margin: 0 0 10px 0;
 }
 
-#play-text {
+.play-container p {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
     color: #E8D4A3;
-    margin: 10px 0;
+    margin-top: 5px;
 }
 
 /* Question and Options Styling */
-#questionContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
 .question {
     margin: 0;
-    padding: 15px 10px;
-    text-align: center;
+    padding: 10px;
+    text-align: left;
+}
+
+.question h3 {
     font-size: 1.8rem;
-    line-height: 1.5;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.question p {
+    font-size: 1.5rem;
+    line-height: 1.4;
     margin-bottom: 20px;
 }
 
-.options-list {
-    list-style: none;
-    padding: 0;
+/* Options Styling */
+.options-container {
     width: 100%;
 }
 
-.option-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.options-list li {
-    font-size: 2rem;
-    margin: 15px 0;
-    padding: 20px;
+.option {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    padding: 15px;
     cursor: pointer;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
-    text-align: center;
-    background-color: #2F191B;
-    color: #E8D4A3;
+    text-align: left;
 }
 
-.options-list li:hover {
+.option:hover {
     background-color: #E2A946;
     color: #2F191B;
 }
@@ -241,19 +227,11 @@ body {
         min-height: 400px;
     }
 
-    #playIcon {
+    .play-container i {
         font-size: 5rem;
     }
 
-    #play-text {
-        font-size: 2.2rem;
-    }
-
-    .question {
-        font-size: 2rem;
-    }
-
-    .options-list li {
+    .play-container p {
         font-size: 2.2rem;
     }
 }
