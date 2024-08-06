@@ -45,13 +45,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (index < 0 || index >= selectedQuestions.length) return;
 
         const question = selectedQuestions[index];
+        const shuffledOptions = shuffleArray([...question.options]);
         playContainer.innerHTML = `
             <div class="question">
                 <h3>Question ${index + 1}:</h3>
                 <p>${question.question}</p>
                 <br>
                 <div class="options-container">
-                    ${question.options.map((option, optionIndex) => `<div class="option" data-index="${optionIndex}">${option}</div><br>`).join('')}
+                    ${shuffledOptions.map((option, optionIndex) => `<div class="option" data-index="${optionIndex}">${option}</div><br>`).join('')}
                 </div>
             </div>
         `;
@@ -95,15 +96,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to display completion message
     function showCompletionMessage() {
         playContainer.innerHTML = `
-        <div id="completionMessage">
-            <p>Quiz completed!</p>
-            <p>Your score is ${score} out of ${selectedQuestions.length}.</p>
-            <button id="restartButton">
-                <span class="material-symbols-outlined">replay</span>
-                <br>Play Again
-            </button>
-        </div>
-    `;
+            <div id="completionMessage">
+                <p>Quiz completed!</p>
+                <p>Your score is ${score} out of ${selectedQuestions.length}.</p>
+                <button id="restartButton">
+                    <span class="material-symbols-outlined">replay</span>
+                    <br>Play Again
+                </button>
+            </div>
+        `;
 
         // Add a delay to ensure DOM is updated
         setTimeout(() => {
