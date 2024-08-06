@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="question">
                 <h3>Question ${index + 1}:</h3>
                 <p>${question.question}</p>
-                <br> <!-- Line break after the question -->
+                <br>
                 <div class="options-container">
                     ${question.options.map((option, optionIndex) => `<div class="option" data-index="${optionIndex}">${option}</div><br>`).join('')}
                 </div>
@@ -56,16 +56,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const options = document.querySelectorAll('.option');
         options.forEach(option => {
             option.addEventListener('click', function () {
-                checkAnswer(option, question.correctIndex);
+                checkAnswer(option, question.answer);
             });
         });
     }
 
     // Function to check if the selected answer is correct
-    function checkAnswer(selectedOption, correctIndex) {
-        const selectedIndex = parseInt(selectedOption.getAttribute('data-index'));
+    function checkAnswer(selectedOption, correctAnswer) {
+        const selectedText = selectedOption.textContent.trim();
+        debugger;
+        console.log("Correct Answer:", correctAnswer);
 
-        if (selectedIndex === correctIndex) {
+        if (selectedText === correctAnswer) {
             selectedOption.style.backgroundColor = '#4CAF50'; // Green
         } else {
             selectedOption.style.backgroundColor = '#F44336'; // Red
@@ -76,6 +78,16 @@ document.addEventListener('DOMContentLoaded', function () {
         options.forEach(option => {
             option.style.pointerEvents = 'none';
         });
+
+        // Move to the next question
+        setTimeout(function() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < selectedQuestions.length) {
+                displayQuestion(currentQuestionIndex);
+            } else {
+                playContainer.innerHTML = '<p>Quiz completed! Click "Play" to restart.</p>';
+            }
+        }, 1500);
     }
 
     // Function to start the quiz
@@ -89,5 +101,5 @@ document.addEventListener('DOMContentLoaded', function () {
     playButton.addEventListener('click', startQuiz);
     playIcon.addEventListener('click', startQuiz);
 
-    questions = window.questions;
+    questions = window.questions || [];
 });
