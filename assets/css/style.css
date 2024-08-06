@@ -147,6 +147,7 @@ body {
     color: #E2A946;
     font-size: 4rem;
     margin: 0 0 10px 0;
+    padding-bottom: 10px;
 }
 
 .play-container p {
@@ -193,6 +194,32 @@ body {
 .option:hover {
     background-color: #E2A946;
     color: #2F191B;
+}
+
+/* Restart Button Styling */
+#restartButton {
+    font-size: 2rem;
+    padding: 10px 20px;
+    background-color: #E2A946;
+    color: #2F191B;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+#restartButton:hover {
+    background-color: #D19A3D;
+}
+
+#restartButton .material-symbols-outlined {
+    margin-bottom: 5px;
 }
 
 /* Hide element */

@@ -5,9 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const playButton = document.getElementById('playButton');
     const playIcon = document.getElementById('playIcon');
     const playContainer = document.querySelector('.play-container');
+    const completionMessage = document.getElementById('completionMessage');
+    const scoreMessage = document.getElementById('scoreMessage');
+    const restartButton = document.getElementById('restartButton');
     let questions = [];
     let currentQuestionIndex = 0;
     let selectedQuestions = [];
+    let score = 0;
 
     // Open the modal when the instructions button is clicked
     instructionsButton.addEventListener('click', function (e) {
@@ -64,11 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to check if the selected answer is correct
     function checkAnswer(selectedOption, correctAnswer) {
         const selectedText = selectedOption.textContent.trim();
-        debugger;
-        console.log("Correct Answer:", correctAnswer);
-
         if (selectedText === correctAnswer) {
             selectedOption.style.backgroundColor = '#4CAF50'; // Green
+            score++;
         } else {
             selectedOption.style.backgroundColor = '#F44336'; // Red
         }
@@ -80,20 +82,47 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Move to the next question
-        setTimeout(function() {
+        setTimeout(function () {
             currentQuestionIndex++;
             if (currentQuestionIndex < selectedQuestions.length) {
                 displayQuestion(currentQuestionIndex);
             } else {
-                playContainer.innerHTML = '<p>Quiz completed! Click "Play" to restart.</p>';
+                showCompletionMessage();
             }
         }, 1500);
+    }
+
+    // Function to display completion message
+    function showCompletionMessage() {
+        playContainer.innerHTML = `
+        <div id="completionMessage">
+            <p>Quiz completed!</p>
+            <p>Your score is ${score} out of ${selectedQuestions.length}.</p>
+            <button id="restartButton">
+                <span class="material-symbols-outlined">replay</span>
+                <br>Play Again
+            </button>
+        </div>
+    `;
+
+        // Add a delay to ensure DOM is updated
+        setTimeout(() => {
+            const restartButton = document.getElementById('restartButton');
+            if (restartButton) {
+                restartButton.addEventListener('click', function () {
+                    startQuiz();
+                });
+            } else {
+                console.error('Restart button not found');
+            }
+        }, 0);
     }
 
     // Function to start the quiz
     function startQuiz() {
         selectedQuestions = shuffleArray([...questions]).slice(0, 10);
         currentQuestionIndex = 0;
+        score = 0;
         displayQuestion(currentQuestionIndex);
     }
 
