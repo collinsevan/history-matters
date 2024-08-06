@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentQuestionIndex = 0;
     let selectedQuestions = [];
     let score = 0;
+    let timerInterval;
+    let timeRemaining;
 
     // Open the modal when the instructions button is clicked
     instructionsButton.addEventListener('click', function (e) {
@@ -40,22 +42,52 @@ document.addEventListener('DOMContentLoaded', function () {
         return array;
     }
 
+    // Function to start the timer
+    function startTimer() {
+        timeRemaining = 10;
+        const timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = timeRemaining;
+
+        if (timerInterval) {
+            clearInterval(timerInterval);
+        }
+
+        timerInterval = setInterval(() => {
+            timeRemaining--;
+            timerDisplay.textContent = timeRemaining;
+
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                handleTimeout();
+            }
+        }, 1000);
+    }
+
+    // Function to handle timeout
+    function handleTimeout() {
+        checkAnswer(null, selectedQuestions[currentQuestionIndex].answer);
+    }
+
     // Function to display a question
     function displayQuestion(index) {
         if (index < 0 || index >= selectedQuestions.length) return;
 
         const question = selectedQuestions[index];
-        const shuffledOptions = shuffleArray([...question.options]);
         playContainer.innerHTML = `
             <div class="question">
-                <h3>Question ${index + 1}:</h3>
+                <h3>
+                    Question ${index + 1}: <span id="timer">10</span>
+                </h3>
                 <p>${question.question}</p>
-                <br>
                 <div class="options-container">
-                    ${shuffledOptions.map((option, optionIndex) => `<div class="option" data-index="${optionIndex}">${option}</div><br>`).join('')}
+                    ${shuffleArray([...question.options]).map((option, optionIndex) => 
+                        `<div class="option" data-index="${optionIndex}">${option}</div>`
+                    ).join('')}
                 </div>
             </div>
         `;
+
+        startTimer();
 
         // Add click event listener to each option
         const options = document.querySelectorAll('.option');
@@ -68,15 +100,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to check if the selected answer is correct
     function checkAnswer(selectedOption, correctAnswer) {
-        const selectedText = selectedOption.textContent.trim();
-        if (selectedText === correctAnswer) {
-            selectedOption.style.backgroundColor = '#4CAF50'; // Green
-            score++;
+        if (selectedOption) {
+            const selectedText = selectedOption.textContent.trim();
+            if (selectedText === correctAnswer) {
+                selectedOption.style.backgroundColor = '#4CAF50'; // Green
+                score++;
+            } else {
+                selectedOption.style.backgroundColor = '#F44336'; // Red
+            }
         } else {
-            selectedOption.style.backgroundColor = '#F44336'; // Red
+            // Handle timeout as incorrect
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                if (option.textContent.trim() === correctAnswer) {
+                    option.style.backgroundColor = '#4CAF50';
+                }
+            });
         }
 
-        // Disable all options after selection
+        // Disable all options after selection or timeout
         const options = document.querySelectorAll('.option');
         options.forEach(option => {
             option.style.pointerEvents = 'none';

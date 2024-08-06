@@ -222,6 +222,29 @@ body {
     margin-bottom: 5px;
 }
 
+/* Timer & Question Styling */
+.question h3 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.question-text {
+    flex: 1;
+    justify-content: right;
+    align-self: auto;
+}
+
+.timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #E2A946;
+    justify-content: space-between;
+    display: flex;
+}
 /* Hide element */
 .hidden {
     display: none;
