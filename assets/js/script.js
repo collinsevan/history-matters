@@ -51,19 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
         `;
-
-        // Event listener for the next question button
-        const nextButton = document.getElementById('nextQuestion');
-        if (nextButton) {
-            nextButton.addEventListener('click', function () {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < selectedQuestions.length) {
-                    displayQuestion(currentQuestionIndex);
-                } else {
-                    playContainer.innerHTML = '<p>Quiz completed! Click "Play" to restart.</p>';
-                }
-            });
-        }
     }
 
     // Function to start the quiz
