@@ -26,21 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Function to load questions from the JSON file
-    async function loadQuestions() {
-        try {
-            const response = await fetch('assets/data/questions.json');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Failed to load questions:', error);
-            return [];
-        }
-    }
-
     // Function to display a single question
     function displayQuestion(index) {
         if (index < 0 || index >= questions.length) return; // Out of bounds check
@@ -58,11 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to start the quiz
-    async function startQuiz() {
-        const allQuestions = await loadQuestions();
-        const shuffledQuestions = shuffleArray(allQuestions);
-        questions = shuffledQuestions.slice(0, 10);
+    function startQuiz() {
+        const shuffledQuestions = shuffleArray(questions);
+        const selectedQuestions = shuffledQuestions.slice(0, 10);
         currentQuestionIndex = 0;
+        questions = selectedQuestions;
         displayQuestion(currentQuestionIndex);
     }
 
