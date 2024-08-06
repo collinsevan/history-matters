@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const completionMessage = document.getElementById('completionMessage');
     const scoreMessage = document.getElementById('scoreMessage');
     const restartButton = document.getElementById('restartButton');
+    const exitButton = document.getElementById('exitButton');
+    const exitConfirmationModal = document.getElementById('exitConfirmationModal');
+    const confirmExitButton = document.getElementById('confirmExitButton');
+    const cancelExitButton = document.getElementById('cancelExitButton');
     let questions = [];
     let currentQuestionIndex = 0;
     let selectedQuestions = [];
@@ -169,9 +173,38 @@ document.addEventListener('DOMContentLoaded', function () {
         displayQuestion(currentQuestionIndex);
     }
 
+    // Function to handle exit button click
+    function handleExit() {
+        exitConfirmationModal.classList.remove('hidden');
+    }
+
+    // Function to confirm exit
+    function confirmExit() {
+        exitConfirmationModal.classList.add('hidden');
+        window.close(); 
+    }
+
+    // Function to cancel exit
+    function cancelExit() {
+        exitConfirmationModal.classList.add('hidden');
+    }
+
     // Event listeners for play buttons
     playButton.addEventListener('click', startQuiz);
     playIcon.addEventListener('click', startQuiz);
+
+    // Event listener for exit button
+    if (exitButton) {
+        exitButton.addEventListener('click', handleExit);
+    }
+
+    if (confirmExitButton) {
+        confirmExitButton.addEventListener('click', confirmExit);
+    }
+
+    if (cancelExitButton) {
+        cancelExitButton.addEventListener('click', cancelExit);
+    }
 
     questions = window.questions || [];
 });

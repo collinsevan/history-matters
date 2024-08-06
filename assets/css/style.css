@@ -116,6 +116,39 @@ body {
     color: #E2A946;
 }
 
+/* Confirmation Modal Styling */
+#exitConfirmationModal .modal-content {
+    text-align: center;
+}
+
+#exitConfirmationModal button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#confirmExitButton {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+#confirmExitButton:hover {
+    background-color: #45a049;
+}
+
+#cancelExitButton {
+    background-color: #F44336;
+    color: #fff;
+}
+
+#cancelExitButton:hover {
+    background-color: #e53935;
+}
+
 /* Play Container Styling */
 .game-container {
     display: flex;
