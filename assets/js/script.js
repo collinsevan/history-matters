@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const playButton = document.getElementById('playButton');
     const playIcon = document.getElementById('playIcon');
     const playContainer = document.querySelector('.play-container');
+    let questions = window.questions || [];
     let currentQuestionIndex = 0;
-    let questions = [];
+    let selectedQuestions = [];
 
     // Open the modal when the instructions button is clicked
     instructionsButton.addEventListener('click', function (e) {
@@ -26,11 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Function to display a single question
-    function displayQuestion(index) {
-        if (index < 0 || index >= questions.length) return; // Out of bounds check
+    // Function to shuffle an array using the Fisher-Yates algorithm
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 
-        const question = questions[index];
+    // Function to display a question
+    function displayQuestion(index) {
+        if (index < 0 || index >= selectedQuestions.length) return;
+
+        const question = selectedQuestions[index];
         playContainer.innerHTML = `
             <div class="question">
                 <h3>Question ${index + 1}:</h3>
@@ -44,28 +54,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to start the quiz
     function startQuiz() {
-        const shuffledQuestions = shuffleArray(questions);
-        const selectedQuestions = shuffledQuestions.slice(0, 10);
+        if (questions.length === 0) {
+            console.error("Questions array is empty or not defined.");
+            return;
+        }
+        selectedQuestions = shuffleArray([...questions]).slice(0, 10);
         currentQuestionIndex = 0;
-        questions = selectedQuestions;
         displayQuestion(currentQuestionIndex);
     }
 
-    // Function to shuffle an array using the Fisher-Yates algorithm
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-    // Event listeners for play button and play icon
-    playButton.addEventListener('click', function () {
-        startQuiz();
-    });
-
-    playIcon.addEventListener('click', function () {
-        startQuiz();
-    });
+    // Event listeners for play buttons
+    playButton.addEventListener('click', startQuiz);
+    playIcon.addEventListener('click', startQuiz);
 });
