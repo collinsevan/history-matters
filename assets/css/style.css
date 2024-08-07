@@ -90,6 +90,7 @@ body {
     width: 90%;
     max-width: 600px;
     border-radius: 8px;
+    text-align: center;
 }
 
 .modal-content h2 {
@@ -368,6 +369,22 @@ body {
 
     .modal-content {
         width: 60%;
+        max-width: 800px;
+        font-size: 1.3rem;
+    }
+
+    .modal-content h2 {
+        font-size: 2rem;
+    }
+
+    .modal-content p,
+    .modal-content ul {
+        font-size: 1.3rem;
+    }
+
+    #exitConfirmationModal button {
+        font-size: 1.2rem;
+        padding: 12px 24px;
     }
 
     .play-container {
@@ -407,6 +424,26 @@ body {
         padding: 0.75rem 2rem;
     }
 
+    .modal-content {
+        width: 70%;
+        max-width: 900px;
+        font-size: 1.4rem;
+    }
+
+    .modal-content h2 {
+        font-size: 2.4rem;
+    }
+
+    .modal-content p,
+    .modal-content ul {
+        font-size: 1.4rem;
+    }
+
+    #exitConfirmationModal button {
+        font-size: 1.4rem;
+        padding: 14px 28px;
+    }
+
     .play-container {
         width: 70%;
         min-height: 500px;
@@ -414,12 +451,10 @@ body {
 
     .play-container i {
         font-size: 5rem;
-        margin-bottom: 20px;
     }
 
     .play-container p {
         font-size: 2.2rem;
-        margin-top: 20px;
     }
 
     .option {
@@ -446,6 +481,26 @@ body {
         padding: 1rem 2rem;
     }
 
+    .modal-content {
+        width: 60%;
+        max-width: 1000px;
+        font-size: 1.5rem;
+    }
+
+    .modal-content h2 {
+        font-size: 2.6rem;
+    }
+
+    .modal-content p,
+    .modal-content ul {
+        font-size: 1.5rem;
+    }
+
+    #exitConfirmationModal button {
+        font-size: 1.6rem;
+        padding: 16px 32px;
+    }
+
     .play-container {
         width: 60%;
         min-height: 550px;
@@ -453,12 +508,10 @@ body {
 
     .play-container i {
         font-size: 5.5rem;
-        margin-bottom: 25px;
     }
 
     .play-container p {
         font-size: 2.4rem;
-        margin-top: 25px;
     }
 
     .option {
