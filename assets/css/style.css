@@ -169,7 +169,7 @@ body {
     border: 2px solid #E2A946;
     border-radius: 12px;
     padding: 20px;
-    width: 70%;
+    width: 90%;
     max-width: 600px;
     min-height: 350px;
     text-align: center;
@@ -303,17 +303,52 @@ body {
     justify-content: space-between;
     display: flex;
 }
+
 /* Hide element */
 .hidden {
     display: none;
 }
 
-/* Media Query for larger devices */
-@media (min-width: 768px) {
+/* Media queries for larger devices */
+
+/* Small devices (up to 768px) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .nav-link {
+        padding: 0.5rem;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .play-container {
+        width: 90%;
+        min-height: 300px;
+    }
+
+    .play-container i {
+        font-size: 3rem;
+    }
+
+    .play-container p {
+        font-size: 1.6rem;
+    }
+}
+
+/* Large devices (1024px and up) */
+@media (min-width: 1024px) {
     .navbar {
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
     }
 
     .navbar-nav {
@@ -322,21 +357,49 @@ body {
         margin: 0;
     }
 
-    .nav-item {
-        width: auto;
-    }
-
     .modal-content {
-        width: 50%;
+        width: 60%;
     }
 
     .play-container {
-        width: 60%;
+        width: 70%;
         min-height: 400px;
     }
 
     .play-container i {
+        font-size: 4.5rem;
+    }
+
+    .play-container p {
+        font-size: 1.8rem;
+    }
+}
+
+/* Extra large devices (1440px and up) */
+@media (min-width: 1440px) {
+    .play-container {
+        width: 60%;
+        min-height: 450px;
+    }
+
+    .play-container i {
         font-size: 5rem;
+    }
+
+    .play-container p {
+        font-size: 2rem;
+    }
+}
+
+/* Full HD devices (1920px and up) */
+@media (min-width: 1920px) {
+    .play-container {
+        width: 50%;
+        min-height: 500px;
+    }
+
+    .play-container i {
+        font-size: 5.5rem;
     }
 
     .play-container p {
