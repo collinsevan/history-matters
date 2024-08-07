@@ -85,7 +85,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>${question.question}</p>
                 <div class="options-container">
                     ${shuffleArray([...question.options]).map((option, optionIndex) => 
-                        `<div class="option" data-index="${optionIndex}">${option}</div>`
+                        `<div class="option" data-index="${optionIndex}">
+                            <span class="option-text">${option}</span>
+                            <span class="icon-check hidden">&#10003;</span>
+                            <span class="icon-cross hidden">&#10007;</span>
+                        </div>`
                     ).join('')}
                 </div>
             </div>
@@ -105,19 +109,24 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to check if the selected answer is correct
     function checkAnswer(selectedOption, correctAnswer) {
         if (selectedOption) {
-            const selectedText = selectedOption.textContent.trim();
+            const selectedText = selectedOption.querySelector('.option-text').textContent.trim();
+            const checkIcon = selectedOption.querySelector('.icon-check');
+            const crossIcon = selectedOption.querySelector('.icon-cross');
+
             if (selectedText === correctAnswer) {
                 selectedOption.style.backgroundColor = '#4CAF50'; // Green
-                score++;
+                checkIcon.classList.remove('hidden');
             } else {
                 selectedOption.style.backgroundColor = '#F44336'; // Red
+                crossIcon.classList.remove('hidden');
             }
         } else {
             // Handle timeout as incorrect
             const options = document.querySelectorAll('.option');
             options.forEach(option => {
-                if (option.textContent.trim() === correctAnswer) {
+                if (option.querySelector('.option-text').textContent.trim() === correctAnswer) {
                     option.style.backgroundColor = '#4CAF50';
+                    option.querySelector('.icon-check').classList.remove('hidden');
                 }
             });
         }

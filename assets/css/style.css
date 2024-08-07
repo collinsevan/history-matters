@@ -222,11 +222,36 @@ body {
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
     text-align: left;
+    position: relative;
 }
 
 .option:hover {
     background-color: #E2A946;
     color: #2F191B;
+}
+
+.icon-check,
+.icon-cross {
+    position: absolute;
+    right: 10px;
+    font-size: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.icon-check.hidden,
+.icon-cross.hidden {
+    display: none;
+}
+
+.option.correct .icon-check {
+    opacity: 1;
+}
+
+.option.incorrect .icon-cross {
+    opacity: 1;
 }
 
 /* Restart Button Styling */
