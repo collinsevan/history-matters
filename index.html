@@ -4,16 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="History Matters - An engaging history quiz game that challenges your knowledge on various historical events and figures. Play now to test your history IQ!">
+    <meta name="keywords" content="history quiz, history matters, educational quiz, history trivia, online quiz, history game, quiz game, learning, education">
+    <meta name="author" content="Evan Collins">
+    <title>History Matters - Interactive History Quiz Game</title>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>History Matters</title>
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">History Matters <i class="fa-solid fa-book fa-lg"></i></a>
-        <ul class="navbar-nav">
+    <nav class="navbar navbar-light bg-light" aria-label="Main Navigation">
+        <a class="navbar-brand" href="index.html">History Matters <i class="fa-solid fa-book fa-lg" aria-hidden="true"></i></a>
+        <ul class="navbar-nav" role="navigation">
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#instructionsModal">Instructions</a>
             </li>
@@ -27,29 +31,29 @@
     </nav>
 
     <!-- Game Container -->
-    <div class="game-container">
-        <div class="play-container">
+    <main class="game-container" role="main">
+        <div class="play-container" role="region" aria-labelledby="play-text">
             <div id="playIconContainer">
-                <i id="playIcon" class="fa-solid fa-play fa-2xl"></i>
+                <i id="playIcon" class="fa-solid fa-play fa-2xl" aria-hidden="true"></i>
             </div>
             <p id="play-text">Play</p>
-            <div id="questionContainer"></div>
-            <div id="completionMessage" class="hidden">
+            <div id="questionContainer" aria-live="polite"></div>
+            <div id="completionMessage" class="hidden" aria-hidden="true">
                 <p>Quiz completed!</p>
                 <p id="scoreMessage"></p>
-                <button id="restartButton">
-                    <span class="material-symbols-outlined">replay</span>
+                <button id="restartButton" aria-label="Play the quiz again">
+                    <span class="material-symbols-outlined" aria-hidden="true">replay</span>
                     <br>Play Again
                 </button>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Instructions Modal -->
-    <div id="instructionsModal" class="modal hidden">
+    <div id="instructionsModal" class="modal hidden" role="dialog" aria-labelledby="instructionsTitle" aria-modal="true">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>How to Play</h2>
+            <button class="close" aria-label="Close Instructions">&times;</button>
+            <h2 id="instructionsTitle">How to Play</h2>
             <p>Welcome to the History Matters quiz! Here’s how to play:</p>
             <ul>
                 <li>Click on "Play" in the navigation or the play button to start the quiz.</li>
@@ -62,12 +66,12 @@
     </div>
 
     <!-- Confirmation Modal -->
-    <div id="exitConfirmationModal" class="modal hidden">
+    <div id="exitConfirmationModal" class="modal hidden" role="dialog" aria-labelledby="exitConfirmationTitle" aria-modal="true">
         <div class="modal-content">
-            <h2>Confirm Exit</h2>
+            <h2 id="exitConfirmationTitle">Confirm Exit</h2>
             <p>Are you sure you want to exit? Your progress will not be saved.</p>
-            <button id="confirmExitButton">Yes</button>
-            <button id="cancelExitButton">No</button>
+            <button id="confirmExitButton" aria-label="Confirm Exit">Yes</button>
+            <button id="cancelExitButton" aria-label="Cancel Exit">No</button>
         </div>
     </div>
 

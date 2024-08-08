@@ -310,8 +310,6 @@ body {
     display: none;
 }
 
-/* Media queries for larger devices */
-
 /* Small devices (up to 768px) */
 @media (max-width: 768px) {
     .navbar {
@@ -342,6 +340,11 @@ body {
 
     .play-container p {
         font-size: 1.6rem;
+    }
+    #restartButton {
+        margin-left: 50px;
+        margin-right: 0;
+        align-self: center;
     }
 }
 
