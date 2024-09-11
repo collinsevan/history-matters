@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>`
                     ).join('')}
                 </div>
+                <p id="feedbackMessage" class="hidden"></p> <!-- Added feedback message element -->
             </div>
         `;
 
@@ -108,6 +109,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to check if the selected answer is correct
     function checkAnswer(selectedOption, correctAnswer) {
+        clearInterval(timerInterval); // Stop timer immediately on answer selection
+
+        const feedbackMessage = document.getElementById('feedbackMessage'); // Get feedback element
         if (selectedOption) {
             const selectedText = selectedOption.querySelector('.option-text').textContent.trim();
             const checkIcon = selectedOption.querySelector('.icon-check');
@@ -116,9 +120,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selectedText === correctAnswer) {
                 selectedOption.style.backgroundColor = '#4CAF50'; // Green
                 checkIcon.classList.remove('hidden');
+                feedbackMessage.textContent = 'Correct!'; // Show "Correct!" message
+                feedbackMessage.style.color = '#4CAF50';
             } else {
                 selectedOption.style.backgroundColor = '#F44336'; // Red
                 crossIcon.classList.remove('hidden');
+                feedbackMessage.textContent = 'Incorrect!'; // Show "Incorrect!" message
+                feedbackMessage.style.color = '#F44336';
             }
         } else {
             // Handle timeout as incorrect
@@ -129,7 +137,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     option.querySelector('.icon-check').classList.remove('hidden');
                 }
             });
+            feedbackMessage.textContent = 'Time\'s up!'; // Feedback for timeout
+            feedbackMessage.style.color = '#F44336';
         }
+
+        feedbackMessage.classList.remove('hidden'); // Show the feedback message
 
         // Disable all options after selection or timeout
         const options = document.querySelectorAll('.option');
