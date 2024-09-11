@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeModalButton = document.querySelector('.close');
     const playButton = document.getElementById('playButton');
     const playIcon = document.getElementById('playIcon');
+    const resetButton = document.getElementById('resetButton')
     const playContainer = document.querySelector('.play-container');
     const completionMessage = document.getElementById('completionMessage');
     const scoreMessage = document.getElementById('scoreMessage');
@@ -195,6 +196,18 @@ document.addEventListener('DOMContentLoaded', function () {
         displayQuestion(currentQuestionIndex);
     }
 
+    // Function to handle reset button click
+    function resetQuiz() {
+        clearInterval(timerInterval);
+        currentQuestionIndex = 0; // Reset question index
+        score = 0; // Reset score
+        selectedQuestions = [];
+        playContainer.innerHTML = '';
+        instructionsModal.classList.add('hidden');
+        exitConfirmationModal.classList.add('hidden');
+        startQuiz();
+    }
+
     // Function to handle exit button click
     function handleExit() {
         exitConfirmationModal.classList.remove('hidden');
@@ -214,6 +227,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listeners for play buttons
     playButton.addEventListener('click', startQuiz);
     playIcon.addEventListener('click', startQuiz);
+
+    // Event listener for reset button
+    if (resetButton) { // Add event listener for reset button
+        resetButton.addEventListener('click', resetQuiz);
+    }
 
     // Event listener for exit button
     if (exitButton) {
