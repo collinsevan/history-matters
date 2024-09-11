@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 checkIcon.classList.remove('hidden');
                 feedbackMessage.textContent = 'Correct!'; // Show "Correct!" message
                 feedbackMessage.style.color = '#4CAF50';
+                score++;  // Increment the score when the answer is correct
             } else {
                 selectedOption.style.backgroundColor = '#F44336'; // Red
                 crossIcon.classList.remove('hidden');
@@ -190,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function startQuiz() {
         selectedQuestions = shuffleArray([...questions]).slice(0, 10);
         currentQuestionIndex = 0;
-        score = 0;
+        score = 0; // Reset score when starting the quiz (Updated)
         displayQuestion(currentQuestionIndex);
     }
 
