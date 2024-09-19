@@ -122,6 +122,20 @@ The project is currently deployed and can be accessed [here](https://github.com/
   - **Source:** [MDN Web Docs - HTMLTemplateElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement)
   - **Explanation:** Utilizing `<template>` elements for loading and rendering HTML snippets dynamically.
 
+
+## Known Issues & Future Improvements
+- **UI Layout Shift for Feedback Message**:  
+  - Currently, when the feedback message for "Correct," "Incorrect," or "Time's up" appears, the UI slightly shifts to accommodate the message. This causes a visual layout shift, which can be distracting for users.
+
+  - **Methods Tried**:
+    1. **Expanding the Game Container**: I tried expanding the size of the entire game container to provide extra space for the feedback message, but this led to the options being resized unexpectedly and occupying too much space.
+    2. **Using REM Units for Dynamic Sizing**: I attempted to adjust the size of the options and feedback message using REM units, thinking it would scale better across devices. However, the layout shift persisted due to the varying lengths of the questions and answers.
+    3. **Reserving Space Dynamically for Feedback**: We created a dedicated container for the feedback message, but allocating dynamic space resulted in similar layout shifts since the space adjusted based on content size, causing inconsistencies. Also it skewed other elements in the game container.
+    4. **Moving Feedback Outside Play Container**: We moved the feedback message outside the play container into the game container to manage space separately, but this did not fully resolve the shift and created styling issues with mobile responsiveness.
+
+  - **Possible Future Solution**:  
+    To prevent the layout shift, a more robust method will involve allocating a fixed amount of space for the feedback message in advance. This way, even if the feedback message appears, the layout will not change. I aim to experiment with fixed heights for the game container and feedback area to maintain a consistent layout without shifts, regardless of the content length. The use of `rem` units for layout in this project made it challenging to resolve the issue without disrupting the flow of elements on the client side. Adjusting these units led to unexpected changes in the layout and sizing of various components. In the future, I plan to work on addressing this issue more thoroughly. For now, sufficient user feedback is displayed on the page without causing significant usability issues.
+
 ### Projects for Inspiration
 
 - **Pic-Phonics:**
